@@ -1,24 +1,19 @@
-import { Link } from 'react-router'
-import { ArrowLeftIcon } from 'lucide-react'
+import GlobalBodyCard from '../components/GlobalBodyCard'
+
+const Contents = () => {
+    return (
+        <>
+            <h3 className="card-title text-1xl mb-4">This is header 1</h3>
+            <h3 className="card-title text-1xl mb-4">This is header 2</h3>
+        </>
+    )
+}
 
 const ReducerWithExample = () => {
     return (
-        <div className="min-h-screen bg-base-200">
-            <div className="container mx-auto px-4 py-8">
-                <div className="mx-auto max-w-2xl">
-                    <Link to="/" className="btn btn-ghost mb-6">
-                        <ArrowLeftIcon className="size-5" />
-                        Back to Homepage
-                    </Link>
-
-                    <div className="card bg-base-100">
-                        <div className="card-body">
-                            <h2 className="card-title text-2xl mb-4">State management with Reducer</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <GlobalBodyCard
+            title={'State Management with Reducer'}
+            contents={<Contents />} />
     )
 }
 
