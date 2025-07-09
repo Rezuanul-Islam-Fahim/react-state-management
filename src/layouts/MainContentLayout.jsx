@@ -1,7 +1,7 @@
-import { Link } from 'react-router'
+import { Outlet, Link } from 'react-router'
 import { ArrowLeftIcon } from 'lucide-react'
 
-const GlobalBodyCard = ({ title, contents }) => {
+const MainContentLayout = () => {
     return (
         <div className="min-h-screen bg-base-200">
             <div className="container mx-auto px-4 py-8">
@@ -13,10 +13,7 @@ const GlobalBodyCard = ({ title, contents }) => {
 
                     <div className="card bg-base-100">
                         <div className="card-body">
-                            <h2 className="card-title text-2xl mb-4">
-                                {title}
-                            </h2>
-                            {contents}
+                            <Outlet />
                         </div>
                     </div>
                 </div>
@@ -25,4 +22,4 @@ const GlobalBodyCard = ({ title, contents }) => {
     )
 }
 
-export default GlobalBodyCard
+export default MainContentLayout
