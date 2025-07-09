@@ -17,6 +17,13 @@ const ReducerWithExample = () => {
         })
     }
 
+    const handleDeleteTask = (taskId) => {
+        dispatch({
+            type: 'deleted',
+            id: taskId
+        })
+    }
+
     return (
         <>
             <h2 className="card-title text-2xl mb-4">
@@ -25,7 +32,8 @@ const ReducerWithExample = () => {
             <AddTask handleAddTask={handleAddTask} />
             <TaskList
                 tasks={tasks}
-                handleUpdateTask={handleUpdateTask} />
+                handleUpdateTask={handleUpdateTask}
+                handleDeleteTask={handleDeleteTask} />
         </>
     )
 }
@@ -50,22 +58,21 @@ const AddTask = ({ handleAddTask }) => {
     )
 }
 
-const TaskList = ({ tasks, handleUpdateTask }) => {
-
-
+const TaskList = ({ tasks, handleUpdateTask, handleDeleteTask }) => {
     return (
         <div className="flex flex-col mt-4">
             {tasks.map(task => (
                 <Task
                     key={task.id}
                     task={task}
-                    handleUpdateTask={handleUpdateTask} />
+                    handleUpdateTask={handleUpdateTask}
+                    handleDeleteTask={handleDeleteTask} />
             ))}
         </div>
     )
 }
 
-const Task = ({ task, handleUpdateTask }) => {
+const Task = ({ task, handleUpdateTask, handleDeleteTask }) => {
     const [editing, setEditing] = useState(false)
 
     return (
@@ -97,7 +104,11 @@ const Task = ({ task, handleUpdateTask }) => {
                 onClick={e => setEditing(!editing)} >
                 {editing ? 'Save' : 'Edit'}
             </button>
-            <button className="btn btn-error ml-4">Delete</button>
+            <button
+                className="btn btn-error ml-4"
+                onClick={e => handleDeleteTask(task.id)} >
+                Delete
+            </button>
         </div>
     )
 }
@@ -123,6 +134,10 @@ const taskReducer = (tasks, action) => {
                     return e
                 }
             })
+        }
+
+        case 'deleted': {
+            return tasks.filter(e => e.id !== action.id)
         }
 
         default: {
