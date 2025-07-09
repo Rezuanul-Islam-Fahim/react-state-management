@@ -40,7 +40,14 @@ const Task = ({ task, handleUpdateTask }) => {
     return (
         <div className="flex flex-row my-1">
             <div className="flex flex-row bg-gray-100 rounded-md px-5 py-3 min-w-80">
-                <input type="checkbox" checked={task.done} className="checkbox mr-3" />
+                <input
+                    type="checkbox"
+                    onChange={e => handleUpdateTask({
+                        ...task,
+                        done: e.target.checked
+                    })}
+                    checked={task.done}
+                    className="checkbox mr-3" />
                 {editing ? (
                     <input
                         type="text"
@@ -64,8 +71,8 @@ const Task = ({ task, handleUpdateTask }) => {
     )
 }
 
-const taskReducer = (tasks, action) => { 
-    switch(action.type) {
+const taskReducer = (tasks, action) => {
+    switch (action.type) {
         case 'updated': {
             return tasks.map(e => {
                 if (e.id === action.task.id) {
