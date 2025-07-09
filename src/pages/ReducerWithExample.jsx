@@ -3,6 +3,13 @@ import { useReducer, useState } from 'react'
 const ReducerWithExample = () => {
     const [tasks, dispatch] = useReducer(taskReducer, initialTasks)
 
+    const handleAddTask = (text) => {
+        dispatch({
+            type: 'added',
+            text: text
+        })
+    }
+
     const handleUpdateTask = (task) => {
         dispatch({
             type: 'updated',
@@ -15,22 +22,46 @@ const ReducerWithExample = () => {
             <h2 className="card-title text-2xl mb-4">
                 State Management with Reducer
             </h2>
-            <div className="flex flex-row">
-                <input
-                    type="text"
-                    placeholder="Add Task"
-                    className="input input-bordered input-md w-full max-w-xs" />
-                <button className="btn btn-neutral btn-wide ml-4">Add</button>
-            </div>
-            <div className="flex flex-col mt-4">
-                {tasks.map(task => (
-                    <Task
-                        key={task.id}
-                        task={task}
-                        handleUpdateTask={handleUpdateTask} />
-                ))}
-            </div>
+            <AddTask handleAddTask={handleAddTask} />
+            <TaskList
+                tasks={tasks}
+                handleUpdateTask={handleUpdateTask} />
         </>
+    )
+}
+
+const AddTask = ({ handleAddTask }) => {
+    const [text, setText] = useState('')
+
+    return (
+        <div className="flex flex-row">
+            <input
+                type="text"
+                value={text}
+                onChange={e => setText(e.target.value)}
+                placeholder="Add Task"
+                className="input input-bordered input-md w-full max-w-xs" />
+            <button
+                className="btn btn-neutral btn-wide ml-4"
+                onClick={() => handleAddTask(text)} >
+                Add
+            </button>
+        </div>
+    )
+}
+
+const TaskList = ({ tasks, handleUpdateTask }) => {
+
+
+    return (
+        <div className="flex flex-col mt-4">
+            {tasks.map(task => (
+                <Task
+                    key={task.id}
+                    task={task}
+                    handleUpdateTask={handleUpdateTask} />
+            ))}
+        </div>
     )
 }
 
@@ -73,6 +104,17 @@ const Task = ({ task, handleUpdateTask }) => {
 
 const taskReducer = (tasks, action) => {
     switch (action.type) {
+        case 'added': {
+            return [
+                ...tasks,
+                {
+                    id: tasks.length,
+                    text: action.text,
+                    done: false
+                }
+            ]
+        }
+
         case 'updated': {
             return tasks.map(e => {
                 if (e.id === action.task.id) {
