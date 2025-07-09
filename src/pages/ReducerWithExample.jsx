@@ -51,7 +51,10 @@ const AddTask = ({ handleAddTask }) => {
                 className="input input-bordered input-md w-full max-w-xs" />
             <button
                 className="btn btn-neutral btn-wide ml-4"
-                onClick={() => handleAddTask(text)} >
+                onClick={() => {
+                    setText('')
+                    handleAddTask(text)
+                }} >
                 Add
             </button>
         </div>
