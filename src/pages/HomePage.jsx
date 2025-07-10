@@ -12,6 +12,10 @@ const HomePage = () => {
                     className="btn btn-primary my-2">
                     Consolidate state with Reducer
                 </Link>
+                <Link to={'/reducer-immer'}
+                    className="btn btn-primary my-2">
+                    Reducer with Immer
+                </Link>
             </div>
         </div>
     )
