@@ -20,6 +20,10 @@ const HomePage = () => {
                     className="btn btn-primary my-2">
                     Pass data with Context
                 </Link>
+                <Link to={'/more-context'}
+                    className="btn btn-primary my-2">
+                    More on Context
+                </Link>
             </div>
         </div>
     )
