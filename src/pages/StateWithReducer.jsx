@@ -1,6 +1,6 @@
 import { useReducer, useState } from 'react'
 
-const ReducerWithExample = () => {
+const StateWithReducer = () => {
     const [tasks, dispatch] = useReducer(taskReducer, initialTasks)
 
     const handleAddTask = (text) => {
@@ -155,4 +155,4 @@ const initialTasks = [
     { id: 2, text: 'Lennon Wall pic', done: false },
 ]
 
-export default ReducerWithExample
+export default StateWithReducer
