@@ -24,6 +24,10 @@ const HomePage = () => {
                     className="btn btn-primary my-2">
                     More on Context
                 </Link>
+                <Link to={'/reducer-context'}
+                    className="btn btn-primary my-2">
+                    Reducer and Context
+                </Link>
             </div>
         </div>
     )

@@ -6,6 +6,7 @@ import StateWithoutReducer from './pages/StateWithoutReducer'
 import ReducerWithImmer from './pages/ReducerWithImmer'
 import PassingDataWithContext from './pages/PassingDataWithContext'
 import MoreOnContext from './pages/MoreOnContext'
+import ReducerAndContext from './pages/ReducerAndContext'
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path={'/reducer-immer'} element={<ReducerWithImmer />} />
           <Route path={'/pass-with-context'} element={<PassingDataWithContext />} />
           <Route path={'/more-context'} element={<MoreOnContext />} />
+          <Route path={'/reducer-context'} element={<ReducerAndContext />} />
         </Route>
       </Routes>
     </BrowserRouter>
