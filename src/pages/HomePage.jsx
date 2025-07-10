@@ -16,6 +16,10 @@ const HomePage = () => {
                     className="btn btn-primary my-2">
                     Reducer with Immer
                 </Link>
+                <Link to={'/pass-with-context'}
+                    className="btn btn-primary my-2">
+                    Pass data with Context
+                </Link>
             </div>
         </div>
     )
